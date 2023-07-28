@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * my_env - prints environment
@@ -7,7 +7,7 @@
  */
 int my_env(info_t *info)
 {
-	print_list_str(inf->env);
+	print_list_str(info->env);
 	return (0);
 }
 
@@ -48,9 +48,9 @@ int my_unsetenv(info_t *info)
 		_eputs("Too few arguments. \n");
 		return (1);
 	}
-	for (i = 1, i <= info->argc; i++)
+	for (i = 1; i <= info->argc; i++)
 	{
-		unset_env(info, info->argv[i]);
+		unsetenv(info->argv[i]);
 	}
 	return (0);
 }
@@ -66,8 +66,8 @@ int populate_env_list(info_t *info)
 	list_t *node = NULL;
 	size_t i;
 
-	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
+	for (i = 0; get_environ(&i); i++)
+		add_node_end(&node, get_environ(i), 0);
 	info->env = node;
 	return (0);
 }

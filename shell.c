@@ -12,19 +12,19 @@ int my_exit(info_t *info)
 
 	if (info->argv[1])
 	{
-		checkexit = _erratoi(info->argv[1]);
-		if (exitcheck == -1)
+		checkexit = err_atoi(info->argv[1]);
+		if (checkexit == -1)
 		{
 			info->status = 2;
-			print_error(info, "illegal number: ");
+			print_err(info, "illegal number: ");
 			_eputs(info->argv[1]);
 			_eputchar('\n');
 			return (1);
 		}
-		info->error_num = _erratoi(info->argv[1]);
+		info->err_num = err_atoi(info->argv[1]);
 		return (-2);
 	}
-	info->error_num = -1;
+	info->err_num = -1;
 	return (-2);
 }
 
@@ -66,13 +66,14 @@ int my_cd(info_t *info)
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		print_error(info, "can't cd to ");
-		eputs(info->[1], _eputchar('\n'));
+		print_err(info, "can't cd to ");
+		_eputs(info->argv[1]);
+		_eputchar('\n');
 	}
 	else
 	{
-		set_env(info, "OLDPWD", _get_env(info, "PWD="));
-		set_env(info, "PWD", getcwd(buffer, 1024));
+		_setenv(info, "OLDPWD", get_env(info, "PWD="));
+		_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }

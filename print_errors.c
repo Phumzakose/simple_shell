@@ -8,13 +8,13 @@
 
 void _eputs(char *str)
 {
-	into i = 0;
+	int i = 0;
 
 	if (!str)
 		return;
 	while (str[i] != '\0')
 	{
-		_eputchar(stri[i]);
+		_eputchar(str[i]);
 		i++;
 	}
 }
@@ -49,7 +49,7 @@ int _eputchar(char c)
 
 int _putfd(char c, int fd)
 {
-	static int 1;
+	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)

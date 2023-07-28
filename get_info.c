@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * clear_info - clears info_t struct
@@ -11,7 +11,7 @@ void clear_info(info_t *info)
 	info->arg = NULL;
 	info->argv = NULL;
 	info->path = NULL;
-	infor->argc = 0;
+	info->argc = 0;
 }
 
 /**
@@ -23,7 +23,7 @@ void clear_info(info_t *info)
 
 void set_info(info_t *info, char **av)
 {
-	into i = 0;
+	int i = 0;
 
 	info->fname = av[0];
 	if (!info->argv)
@@ -36,7 +36,7 @@ void set_info(info_t *info, char **av)
 		}
 	}
 	for (i = 0; info->argv && info->argv[i]; i++)
-		inf->argc = i;
+		info->argc = i;
 
 	replace_alias(info);
 	replace_vars(info);

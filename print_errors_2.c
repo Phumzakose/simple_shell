@@ -53,7 +53,7 @@ void print_err(info_t *info, char *estr)
  * Return: number of characters to be printed
  */
 
-int print_d(int inout, int fd)
+int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
@@ -75,9 +75,9 @@ int print_d(int inout, int fd)
 		if (_abs_ / i)
 		{
 			__putchar('0' + current / i);
-			count++
+			count++;
 		}
-		current % = i;
+		current %= i;
 	}
 	__putchar('0' + current);
 	count++;
@@ -106,7 +106,7 @@ char *convert_number(long int num, int base, int flags)
 		n = -num;
 		sign = '-';
 	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" :
+	array = (flags & CONVERT_LOWERCASE) ? "0123456789abcdef" :
 		"0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
@@ -131,7 +131,7 @@ void remove_comments(char *buf)
 	int i;
 
 	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ''))
+		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
 		{
 			buf[i] = '\0';
 			break;

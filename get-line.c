@@ -7,7 +7,7 @@
  * @len:len var address
  * Return: bytes to read
  */
-ssize_t input_buf(info_t *info, char char **buf, size_t *len)
+ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 	ssize_t r = 0;
 	ssize_t len_p = 0;
@@ -16,11 +16,11 @@ ssize_t input_buf(info_t *info, char char **buf, size_t *len)
 	{
 		free(buf);
 		*buf = NULL;
-		signal(SIGIN, sigintHandler);
-	#if USE_GETLINE
+		signal(SIGIO, sigintHandler);
+	#ifdef USE_GETLINE
 		r = getline(buf, &len_p, stdin);
 	#else
-		r = _geltline(info, buf, &len_p);
+		r = _getline(info, buf, &len_p);
 	#endif
 		if (r > 0)
 		{
@@ -54,7 +54,7 @@ ssize_t get_line(info_t *info)
 	char **buf_p = &(info->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = inut_buf(info, &buf, &len);
+	r = input_buf(info, &buf, &len);
 	if (r == -1)
 		return (-1);
 	if (len)

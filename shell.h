@@ -118,14 +118,14 @@ char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
 char *_strchr(char *s, char c);
 
-int hsh(info_t *info, char *av);
+int hsh(info_t *info, char **av);
 int find_builtin(info_t *info);
 void find_cmd(info_t *info);
 void fork_cmd(info_t *info);
 
 int bfree(void **ptr);
 
-ssize_t input_buf(info_t *info, char char **buf, size_t *len);
+ssize_t input_buf(info_t *info, char **buf, size_t *len);
 ssize_t get_line(info_t *info);
 ssize_t read_buf(info_t *info, char *buf, size_t *i);
 int _getline(info_t *info, char **ptr, size_t *length);
@@ -147,7 +147,7 @@ int renumber_history(info_t *info);
 
 list_t *add_node(list_t **head, const char *str, int num);
 list_t *add_node_end(list_t **head, const char *str, int num);
-size_t print_list_str(const List_t *h);
+size_t print_list_str(const list_t *h);
 int delete_node_index(list_t **head, unsigned int index);
 void free_list(list_t **head_ptr);
 
@@ -169,12 +169,12 @@ int _putsfd(char *str, int fd);
 
 int err_atoi(char *s);
 void print_err(info_t *info, char *estr);
-int print_d(int inout, int fd);
+int print_d(int input, int fd);
 char *convert_number(long int num, int base, int flags);
 void remove_comments(char *buf);
 
 char *mem_set(char *s, char b, unsigned int n);
-void ffree(char *pp);
+void ffree(char **pp);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 int my_exit(info_t *info);

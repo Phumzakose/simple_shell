@@ -10,7 +10,7 @@
 
 char *mem_set(char *s, char b, unsigned int n)
 {
-	unsigned it i;
+	unsigned int i;
 
 	for (i = 0; i < n; i++)
 		s[i] = b;
@@ -25,13 +25,11 @@ char *mem_set(char *s, char b, unsigned int n)
 
 void ffree(char *pp)
 {
-	char **a = pp;
-
 	if (!pp)
 		return;
-	while (*pp)
-		free(*pp++);
-	free(a);
+	for (int i = 0; pp[i]; i++)
+		free(pp[i]);
+	free(pp);
 }
 
 /**

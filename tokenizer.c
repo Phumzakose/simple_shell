@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * strtow - splits string into words ignoring repeated delimiters
@@ -40,7 +40,7 @@ char **strtow(char *str, char *d)
 			free(s);
 			return (NULL);
 		}
-		for (m = 0; n < k; m++)
+		for (m = 0; m < k; m++)
 			s[j][m] = str[i++];
 		s[j][m] = 0;
 	}
